@@ -1,6 +1,8 @@
 {
-  "name": "@levelio/export-css-variables",
-  "version": "0.0.0",
+  "name": "@levelii/export-css-variables",
+  "type": "module",
+  "version": "0.0.1",
+  "private": false,
   "packageManager": "pnpm@9.12.3",
   "description": "export css variables to css file",
   "author": "levelio",
@@ -22,25 +24,35 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "ecv": "bin/ecv.mjs"
+  },
   "files": [
+    "bin",
     "dist"
   ],
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "eslint-inspect": "npx @eslint/config-inspector",
     "lint": "eslint .",
-    "start": "esno src/index.ts",
+    "bin": "esno src/command.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
     "postcss": "^8.4.47",
-    "postcss-value-parser": "^4.2.0"
+    "postcss-less": "^6.0.0",
+    "postcss-value-parser": "^4.2.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/postcss-less": "^4.0.6",
+    "@types/yargs": "^17.0.33",
     "eslint": "^9.12.0",
     "eslint-plugin-format": "^0.1.2",
     "esno": "^4.8.0",
