@@ -1,0 +1,52 @@
+{
+  "name": "@levelio/export-css-variables",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.12.3",
+  "description": "export css variables to css file",
+  "author": "levelio",
+  "license": "MIT",
+  "homepage": "https://github.com/levelio/export-css-variables#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/levelio/export-css-variables.git"
+  },
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "eslint-inspect": "npx @eslint/config-inspector",
+    "lint": "eslint .",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2",
+    "postcss": "^8.4.47",
+    "postcss-value-parser": "^4.2.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.8.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-format": "^0.1.2",
+    "esno": "^4.8.0",
+    "pnpm": "9.12.0",
+    "typescript": "^5.6.3",
+    "unbuild": "^2.0.0",
+    "vitest": "^2.1.4"
+  }
+}
