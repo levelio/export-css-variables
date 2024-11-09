@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import process from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
@@ -31,7 +32,7 @@ const parser = yargs(hideBin(process.argv)).option({
   const { directory, output, basePath, basePathPrefix } = await parser.parse()
 
   await extractVariables({
-    directory,
+    directory: resolve(process.cwd(), directory),
     output: output || `${directory}/variables.css`,
     basePath,
     basePathPrefix,
