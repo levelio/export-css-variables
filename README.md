@@ -24,7 +24,11 @@ Once installed, you can use the command line tool `ecv` to export CSS variables.
 ### Export CSS Variables
 
 ```bash
-npx ecv -d <path/to/search/css/files> -o <path/to/export/css/file>
+# global installation
+ecv -d <path/to/search/css/files> -o <path/to/export/css/file>
+
+# or use npx
+npx @levelii/export-css-variables ecv
 ```
 
 - -d : `directory` The path to search for CSS files; all CSS files in this path will be searched and exported for CSS variables.

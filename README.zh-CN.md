@@ -24,7 +24,12 @@ bun add -g @levelii/export-css-variables
 ### 导出 CSS 变量
 
 ```bash
+# global installation
 npx ecv -d <搜索css文件路径> -o <导出css文件路径>
+
+# or use npx
+npx @levelii/export-css-variables ecv
+
 ```
 
 - -d : `directory` 搜索 css 文件路径，该路径下所有 css 文件将被搜索并导出 CSS 变量。
