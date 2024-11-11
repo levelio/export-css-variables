@@ -3,6 +3,12 @@ export interface Context {
   directory: string
   basePath: string
   basePathPrefix: string
+  processConfig?: {
+    url?: {
+      // only process url with these protocols ( http and https )
+      remote?: boolean
+    }
+  }
 }
 
 export interface FileInfo {

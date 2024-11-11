@@ -1,3 +1,4 @@
+import type { Context } from './context'
 import postcss from 'postcss'
 import lessSyntax from 'postcss-less'
 import { extractVariablesPlugin } from './plugin'
@@ -12,11 +13,17 @@ export async function extractVariables(options: {
   basePathPrefix?: string
   overrideFile?: boolean
   generateFile?: boolean
+  processConfig?: Context['processConfig']
 }): Promise<string> {
   const { directory, output, basePath, basePathPrefix } = options
   const cssFiles = await findCssFiles(directory)
 
-  const processor = postcss([extractVariablesPlugin({ directory, basePath: basePath || directory, basePathPrefix: basePathPrefix || '@' }) as any])
+  const processor = postcss([extractVariablesPlugin({
+    directory,
+    basePath: basePath || directory,
+    basePathPrefix: basePathPrefix || '@',
+    processConfig: options.processConfig,
+  }) as any])
 
   for (const filePath of cssFiles) {
     const fileContent = await readCssFile(filePath)

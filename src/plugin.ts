@@ -1,7 +1,13 @@
 import type { Declaration } from 'postcss'
+import type { Context } from './context'
 import { processValue } from './process'
 
-export function extractVariablesPlugin(options: { directory: string, basePath: string, basePathPrefix: string }): unknown {
+export function extractVariablesPlugin(options: {
+  directory: string
+  basePath: string
+  basePathPrefix: string
+  processConfig?: Context['processConfig']
+}): unknown {
   function plugin(): unknown {
     return {
       postcssPlugin: 'extract-variables',
@@ -15,6 +21,7 @@ export function extractVariablesPlugin(options: { directory: string, basePath: s
           directory: options.directory,
           basePath: options.basePath,
           basePathPrefix: options.basePathPrefix,
+          processConfig: options.processConfig,
         })
       },
     }

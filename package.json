@@ -36,7 +36,7 @@
     "build": "unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
-    "bin": "esno src/command.ts",
+    "bin": "esno src/commands/ecv.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },

@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import process from 'node:process'
+import process, { on } from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { extractVariables } from '../index'
@@ -26,10 +26,15 @@ const parser = yargs(hideBin(process.argv)).option({
     describe: 'When basePath is set, the prefix of the relative path in the output variable file',
     type: 'string',
   },
+  onlyRemote: {
+    alias: 'r',
+    describe: 'When set, only remote urls will be processed',
+    type: 'boolean',
+  },
 }).help();
 
 (async () => {
-  const { directory, output, basePath, basePathPrefix } = await parser.parse()
+  const { directory, output, basePath, basePathPrefix, onlyRemote } = await parser.parse()
 
   await extractVariables({
     directory: resolve(process.cwd(), directory),
@@ -38,5 +43,10 @@ const parser = yargs(hideBin(process.argv)).option({
     basePathPrefix,
     overrideFile: true,
     generateFile: true,
+    processConfig: {
+      url: {
+        remote: onlyRemote,
+      },
+    },
   })
 })()

@@ -11,12 +11,22 @@ export const urlVariableMap: Map<string, { name: string, value: string, path: st
 export function urlProcess(node: Node, context: Context): boolean {
   if (node.type === 'function' && node.value === 'url') {
     const urlValue = node.nodes?.[0]?.value
-    if (isBase64DataUrl(urlValue))
+    if (context.processConfig?.url?.remote && !isRemoteUrl(urlValue)) {
       return false
+    }
+
+    if (isFontUrl(urlValue)) {
+      return false
+    }
+
+    if (isBase64DataUrl(urlValue)) {
+      return false
+    }
 
     if (isRelativePath(urlValue)) {
       node.nodes[0].value = relativePathToAbsolute(urlValue, context.file.path, context.basePath, context.basePathPrefix)
     }
+
     const urlContent = valueParser.stringify(node)
     const variable = urlVariableMap.get(urlContent)
     if (variable) {
@@ -46,4 +56,17 @@ function relativePathToAbsolute(relativePath: string, filePath: string, basePath
 
 function isBase64DataUrl(url: string): boolean {
   return url.startsWith('data:')
+}
+
+function isRemoteUrl(url: string): boolean {
+  return url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//')
+}
+
+function isFontUrl(url: string): boolean {
+  return url.endsWith('.eot')
+    || url.endsWith('.otf')
+    || url.endsWith('.svg')
+    || url.endsWith('.ttf')
+    || url.endsWith('.woff')
+    || url.endsWith('.woff2')
 }
