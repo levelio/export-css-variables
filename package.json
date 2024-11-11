@@ -1,7 +1,7 @@
 {
   "name": "@levelii/export-css-variables",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "packageManager": "pnpm@9.12.3",
   "description": "export css variables to css file",
