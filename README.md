@@ -35,6 +35,7 @@ npx @levelii/export-css-variables ecv
 - -o : `output` Specifies the path of the output file where the exported CSS variables will be saved.
 - -b : `basePath` If there are relative path references in the CSS, this parameter will be treated as the base URL for conversion, and the default value is the `directory` parameter.
 - -p : `basePathPrefix` The prefix for the base path, which defaults to `@`.
+- -r : `onlyRemote` When set, only remote URLs will be converted to base path references.
 
 The basePath and basePathPrefix parameters can be used to solve issues with relative path references in the CSS. Conversion example:
 

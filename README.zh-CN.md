@@ -36,6 +36,7 @@ npx @levelii/export-css-variables ecv
 - -o : `output` 指定输出文件的路径，将导出的 CSS 变量保存到该文件中。
 - -b : `basePath` 如果css中存在相对路径引用，该参数会作为 baseurl 进行转换，默认值是 `directory` 参数。
 - -p : `basePathPrefix` basepath 的前缀，默认是 `@`。
+- -r : `onlyRemote` 如果css文件中存在本地引用，该参数会忽略本地引用，只导出远程引用的变量。
 
 basePath 和 basePathPrefix 参数可以用于解决 css 中存在相对路径引用的问题。转换例子：
 
