@@ -20,7 +20,7 @@ export function urlProcess(node: Node, context: Context): boolean {
     const urlContent = valueParser.stringify(node)
     const variable = urlVariableMap.get(urlContent)
     if (variable) {
-      node.value = variable.name
+      node.value = `var(${variable.name})`
     }
     else {
       const variableName = getVariableName()

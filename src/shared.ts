@@ -21,7 +21,7 @@ export function overrideFileContent(filePath: string, content: string): Promise<
 }
 
 export function findCssFiles(entry: string): Promise<string[]> {
-  return fg('**/*.{css,scss,sass,less}', { onlyFiles: true, absolute: true, dot: true, cwd: entry })
+  return fg('**/*.{css,scss,sass,less}', { onlyFiles: true, absolute: true, dot: true, cwd: entry, ignore: ['node_modules/**'] })
 }
 
 export function readCssFile(filePath: string): Promise<string> {
